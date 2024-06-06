@@ -1,5 +1,10 @@
 #pragma once
 #include "BaseGame.h"
+#include "utils.h"
+#include "vector"
+#include "Hero.h"
+#include "Enemy.h"
+#include <Texture.h>
 class Game : public BaseGame
 {
 public:
@@ -27,4 +32,17 @@ private:
 	void Initialize();
 	void Cleanup( );
 	void ClearBackground( ) const;
+	void ChangeCameraLocation(float elapsedSec,Point2f playerPosition);
+	void GameReset(bool reset);
+	std::vector<Point2f> m_Ground{
+									Point2f {843.f,50.f},
+									Point2f {0.f,50.f},
+
+									};
+	std::vector<Point2f> m_Position;
+	
+	Hero* m_pHero;
+	std::vector<Enemy*> m_pEnemy; 
+	Point2f m_CameraLocation{ Point2f{421.5f,250.f} };
+	Texture* m_Font{};
 };
